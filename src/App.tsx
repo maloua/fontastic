@@ -3,21 +3,16 @@ import { Controls, H1, Paragraph } from './components';
 import { Style } from './interfaces'
 import './App.css';
 
-interface State {
-  paragraph: Style,
-  h1: Style
-}
-
 export default () => {
-  const [h1, setH1] = useState<Style>({fontSize: 26})
-  const [paragraph, setParagraph] = useState<Style>({fontSize: 16})
+  const [h1, setH1] = useState<Style>({fontSize: 26, color: 'blue'})
+  const [paragraph, setParagraph] = useState<Style>({fontSize: 16, color: 'green'})
 
   return (
     <div>
-      <Controls {...h1} handleChange={(e: Style) => setH1(e) } />
+      <Controls {...h1} handleChange={setH1} />
       <H1 {...h1} />
 
-      <Controls {...paragraph} handleChange={(e: Style) => setParagraph(e) } />
+      <Controls {...paragraph} handleChange={setParagraph} />
       <Paragraph {...paragraph} />
     </div>
   )
