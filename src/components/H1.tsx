@@ -1,28 +1,11 @@
 import React from 'react';
-import { Controls } from './Controls'
+import { Style } from '../interfaces'
 
-interface State {
-  fontSize: number
-}
-
-export class H1 extends React.Component<{}, State> {
-  constructor(props: any) {
-    super(props);
-
-    this.state = {
-      fontSize: 24
-    }
-  }
-
+export class H1 extends React.Component<Style, {}> {
   render() {
     return (
       <div className="h1">
-        <Controls
-          {...this.state}
-          handleChange={updatedValue => this.setState(updatedValue)}
-        />
-
-        <h1 style={{...this.state}}>Ey up bloody mary</h1>
+        <h1 style={{...this.props}}>Ey up bloody mary</h1>
       </div>
     );
   }

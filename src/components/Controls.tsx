@@ -1,13 +1,17 @@
 import React from 'react';
 
+interface Style {
+  fontSize: number
+}
+
 interface Props {
   fontSize: number,
-  handleChange: ((value: object) => void)
+  handleChange: ((value: Style) => void)
 }
 
 export class Controls extends React.Component<Props, {}> {
   handleChange(attr: string, event: any) {
-    this.props.handleChange({ [attr]: parseInt(event.target.value) })
+    this.props.handleChange({ [attr]: parseInt(event.target.value) } as Pick<Style, keyof Style>)
   }
 
   render() {
