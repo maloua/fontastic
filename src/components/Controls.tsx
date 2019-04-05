@@ -24,7 +24,8 @@ export class Controls extends React.Component<Props, State> {
   }
 
   handleChange(attr: string, value: any) {
-    this.props.handleChange({ ...this.props, [attr]: value } as Pick<Style, keyof Style>)
+    const { handleChange, ...rest } = this.props
+    handleChange({ ...rest, [attr]: value } as Pick<Style, keyof Style>)
   }
 
   render() {
@@ -34,20 +35,23 @@ export class Controls extends React.Component<Props, State> {
         <div>
           <label>Size</label>
           <input
-          type="number"
-          value={fontSize}
-          onChange={(e) => this.handleChange('fontSize', Number(e.target.value))}
+            className="fontSize"
+            type="number"
+            value={fontSize}
+            onChange={(e) => this.handleChange('fontSize', Number(e.target.value))}
           />
         </div>
 
         <div>
           <label>Color</label>
-          <button onClick={() => this.toggleColorPicker()}>Toggle colorpicker</button>
+          <button className="toggle-colorpicker" onClick={() => this.toggleColorPicker()}>Toggle colorpicker</button>
           { this.state.showColorPicker &&
-            <ChromePicker
-            color={color}
-            onChange={color => this.handleChange('color', color.hex)}
-            />
+            <div className="colorpicker">
+              <ChromePicker
+              color={color}
+              onChange={color => this.handleChange('color', color.hex)}
+              />
+            </div>
           }
         </div>
       </div>
