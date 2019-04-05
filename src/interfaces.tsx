@@ -1,4 +1,4 @@
 export interface Style {
-  fontSize: number,
-  color: string
+  fontSize: number;
+  color: string;
 }

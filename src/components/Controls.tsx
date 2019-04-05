@@ -1,35 +1,35 @@
-import React from 'react';
-import { ChromePicker } from 'react-color';
-import { Style } from './../interfaces'
+import React from "react";
+import { ChromePicker } from "react-color";
+import { Style } from "./../interfaces";
 
 interface State {
-  showColorPicker: boolean
+  showColorPicker: boolean;
 }
 
 interface Props extends Style {
-  handleChange: ((value: Style) => void)
+  handleChange: ((value: Style) => void);
 }
 
 export class Controls extends React.Component<Props, State> {
   constructor(props: Props) {
-    super(props)
+    super(props);
 
     this.state = {
       showColorPicker: false
-    }
+    };
   }
 
   toggleColorPicker() {
-    this.setState({ showColorPicker: !this.state.showColorPicker })
+    this.setState({ showColorPicker: !this.state.showColorPicker });
   }
 
   handleChange(attr: string, value: any) {
-    const { handleChange, ...rest } = this.props
-    handleChange({ ...rest, [attr]: value } as Pick<Style, keyof Style>)
+    const { handleChange, ...rest } = this.props;
+    handleChange({ ...rest, [attr]: value } as Pick<Style, keyof Style>);
   }
 
   render() {
-    const { fontSize, color } = this.props
+    const { fontSize, color } = this.props;
     return (
       <div>
         <div>
@@ -38,21 +38,28 @@ export class Controls extends React.Component<Props, State> {
             className="fontSize"
             type="number"
             value={fontSize}
-            onChange={(e) => this.handleChange('fontSize', Number(e.target.value))}
+            onChange={e =>
+              this.handleChange("fontSize", Number(e.target.value))
+            }
           />
         </div>
 
         <div>
           <label>Color</label>
-          <button className="toggle-colorpicker" onClick={() => this.toggleColorPicker()}>Toggle colorpicker</button>
-          { this.state.showColorPicker &&
+          <button
+            className="toggle-colorpicker"
+            onClick={() => this.toggleColorPicker()}
+          >
+            Toggle colorpicker
+          </button>
+          {this.state.showColorPicker && (
             <div className="colorpicker">
               <ChromePicker
-              color={color}
-              onChange={color => this.handleChange('color', color.hex)}
+                color={color}
+                onChange={color => this.handleChange("color", color.hex)}
               />
             </div>
-          }
+          )}
         </div>
       </div>
     );
