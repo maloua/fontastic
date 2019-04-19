@@ -4,20 +4,27 @@ import { shallow, mount } from "enzyme";
 import sinon from "sinon";
 import { Controls } from "./../components";
 
+const style = { fontSize: 12, color: "red" };
+const handleChange = () => null;
+
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<Controls />, div);
+  ReactDOM.render(<Controls style={style} handleChange={handleChange} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
 describe("displaying input fields", () => {
   it("always shows the size input", () => {
-    const controls = shallow(<Controls />);
+    const controls = shallow(
+      <Controls style={style} handleChange={handleChange} />
+    );
     expect(controls.find(".fontSize").length).toEqual(1);
   });
 
   it("shows the colorpicker on click", () => {
-    const controls = shallow(<Controls />);
+    const controls = shallow(
+      <Controls style={style} handleChange={handleChange} />
+    );
     const colorButton = controls.find(".toggle-colorpicker");
 
     expect(controls.state("showColorPicker")).toEqual(false);
@@ -32,7 +39,9 @@ describe("displaying input fields", () => {
 
 describe("uses props as default values", () => {
   it("for size input", () => {
-    const controls = mount(<Controls fontSize={12} />);
+    const controls = mount(
+      <Controls style={style} handleChange={handleChange} />
+    );
 
     expect(controls.find(".fontSize").instance().value).toEqual("12");
   });
@@ -41,7 +50,7 @@ describe("uses props as default values", () => {
 describe("updates the values", () => {
   const spyHandleChange = sinon.spy();
   const controls = shallow(
-    <Controls handleChange={spyHandleChange} color="red" />
+    <Controls handleChange={spyHandleChange} style={style} />
   );
   const fontSizeInput = controls.find(".fontSize");
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Style } from "../interfaces";
 
-export class Paragraph extends React.Component<Style, {}> {
+export class Paragraph extends React.Component<{ style: Style }, {}> {
   render() {
     return (
       <div className="paragraph">
-        <p style={{ ...this.props }}>
+        <p style={{ ...this.props.style }}>
           Pommy ipsum shepherd's pie full English breakast chips have a
           butcher's at this therewith air one's dirty linen, unhand me sir Kate
           and Will loo bugger driving a mini a cuppa. Alright geezer ever so bow

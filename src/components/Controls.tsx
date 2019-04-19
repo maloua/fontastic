@@ -6,30 +6,29 @@ interface State {
   showColorPicker: boolean;
 }
 
-interface Props extends Style {
+interface Props {
   handleChange: ((value: Style) => void);
+  style: Style;
 }
 
 export class Controls extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      showColorPicker: false
-    };
-  }
+  state = {
+    showColorPicker: false
+  };
 
   toggleColorPicker() {
     this.setState({ showColorPicker: !this.state.showColorPicker });
   }
 
-  handleChange(attr: string, value: any) {
-    const { handleChange, ...rest } = this.props;
-    handleChange({ ...rest, [attr]: value } as Pick<Style, keyof Style>);
+  handleChange(attr: string, value: string | number) {
+    const { handleChange, style } = this.props;
+
+    handleChange({ ...style, [attr]: value });
   }
 
   render() {
-    const { fontSize, color } = this.props;
+    const { fontSize, color } = this.props.style;
+
     return (
       <div>
         <div>

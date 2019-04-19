@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Controls, H1, Paragraph } from "./components";
+import { Controls, Converter, H1, Paragraph } from "./components";
 import { Style } from "./interfaces";
 import "./App.css";
 
@@ -12,11 +12,13 @@ export default () => {
 
   return (
     <div>
-      <Controls {...h1} handleChange={setH1} />
-      <H1 {...h1} />
+      <Controls style={h1} handleChange={setH1} />
+      <H1 style={h1} />
 
-      <Controls {...paragraph} handleChange={setParagraph} />
-      <Paragraph {...paragraph} />
+      <Controls style={paragraph} handleChange={setParagraph} />
+      <Paragraph style={paragraph} />
+
+      <Converter h1={h1} p={paragraph} />
     </div>
   );
 };
