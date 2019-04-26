@@ -1,6 +1,7 @@
 import React from "react";
 import { ChromePicker } from "react-color";
 import { Style } from "./../interfaces";
+import { Fonts } from "../fonts";
 
 interface State {
   showColorPicker: boolean;
@@ -38,7 +39,8 @@ export class Controls extends React.Component<Props, State> {
       lineHeight,
       letterSpacing,
       wordSpacing,
-      whiteSpace
+      whiteSpace,
+      fontFamily
     } = this.props.style;
 
     return (
@@ -71,6 +73,20 @@ export class Controls extends React.Component<Props, State> {
               />
             </div>
           )}
+        </div>
+
+        <div>
+          <label>fontFamily</label>
+          <select
+            value={fontFamily}
+            onChange={e => this.handleChange("fontFamily", e.target.value)}
+          >
+            {Fonts.map(font => (
+              <option key={font} value={font}>
+                {font}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

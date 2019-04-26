@@ -11,4 +11,5 @@ export type Style = {
   letterSpacing: number;
   wordSpacing: number;
   whiteSpace: string;
+  fontFamily: string;
 };

@@ -1,3 +1,5 @@
+export { GoogleFonts } from "./GoogleFonts";
+
 export { Controls } from "./Controls";
 export { Converter } from "./Converter";
 
