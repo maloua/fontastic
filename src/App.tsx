@@ -3,11 +3,27 @@ import { Controls, Converter, H1, Paragraph } from "./components";
 import { Style } from "./interfaces";
 import "./App.css";
 
+const baseStyle = {
+  color: "#111",
+  fontStyle: "normal",
+  fontWeight: "normal",
+  textTransform: "none",
+  textDecoration: "none",
+  textAlign: "left",
+  lineHeight: 1.5,
+  letterSpacing: 0,
+  wordSpacing: 0,
+  whiteSpace: "normal"
+};
+
 export default () => {
-  const [h1, setH1] = useState<Style>({ fontSize: 26, color: "blue" });
+  const [h1, setH1] = useState<Style>({
+    ...baseStyle,
+    fontSize: 26
+  });
   const [paragraph, setParagraph] = useState<Style>({
-    fontSize: 16,
-    color: "green"
+    ...baseStyle,
+    fontSize: 16
   });
 
   return (
